@@ -1,0 +1,9 @@
+.letter {
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+  font-size: 72px;
+  fill: #111;
+  dominant-baseline: middle;
+  text-anchor: middle;
+  transform-box: fill-box;
+  transform-origin: center;
+}
