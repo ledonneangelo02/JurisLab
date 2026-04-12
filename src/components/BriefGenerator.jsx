@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function BriefGenInput() {
+export default function BriefGenerator() {
   const [text, setText] = useState("");
   const [brief, setBrief] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -138,71 +138,15 @@ export default function BriefGenInput() {
     <div className="min-h-screen text-slate-900">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-              JurisLab
-            </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-              Generate Case Brief
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
-              Paste case text, generate a structured brief, and review everything in one clean,
-              study-friendly workspace.
-            </p>
-          </div>
-
+          
           <div className="flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={handleCopy}
-              disabled={!fullBrief}
-              className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {copied ? "Copied!" : "Copy Brief"}
-            </button>
-
-            <button
-              type="button"
-              className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-slate-100"
-            >
-              Export PDF
-            </button>
+            
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-          <aside className="xl:col-span-3">
-            <div className="sticky top-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Brief Sections</h2>
-              <p className="mt-1 text-sm text-slate-500">
-                Use this as your study structure for every case brief.
-              </p>
-
-              <nav className="mt-5 space-y-2">
-                {sections.map((section, index) => (
-                  <div
-                    key={section}
-                    className={`flex items-center justify-between rounded-2xl px-3 py-3 text-sm ${
-                      index === 0
-                        ? "bg-slate-900 text-white"
-                        : "bg-slate-100 text-slate-700"
-                    }`}
-                  >
-                    <span>{section}</span>
-                    <span className="text-xs opacity-70">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                ))}
-              </nav>
-            </div>
-          </aside>
-
           <main className="space-y-6 xl:col-span-6">
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
-            >
+            <form onSubmit={handleSubmit} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <h2 className="text-xl font-semibold">Input Case Text</h2>
@@ -220,31 +164,25 @@ export default function BriefGenInput() {
                 Enter case text:
               </label>
 
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+              <textarea value={text} onChange={(e) => setText(e.target.value)}
                 className="mt-2 min-h-[260px] w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-slate-500"
                 placeholder="Paste the case text here..."
               />
 
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
+                  <button type="button" className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm hover:bg-slate-100"
                     onClick={() => {
                       setText("");
                       setBrief(null);
                       setError("");
                     }}
-                    className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm hover:bg-slate-100"
                   >
                     Clear Text
                   </button>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading || !text.trim()}
+                <button type="submit" disabled={loading || !text.trim()}
                   className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading ? "Generating..." : "Generate Brief"}
@@ -254,7 +192,9 @@ export default function BriefGenInput() {
               {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
             </form>
 
-            <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          </main>
+          
+          <section className="xl:col-span-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
               <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h2 className="text-xl font-semibold">Generated Case Brief</h2>
@@ -286,89 +226,25 @@ export default function BriefGenInput() {
                     : "No brief generated yet. Paste a case and click Generate Brief."}
                 </div>
               )}
-            </section>
-          </main>
-
-          <aside className="space-y-6 xl:col-span-3">
-            <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Case Metadata</h2>
-              <div className="mt-4 space-y-4">
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Class / Course
-                  </label>
-                  <input
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500"
-                    placeholder="e.g. Constitutional Law"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Topic
-                  </label>
-                  <input
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500"
-                    placeholder="e.g. Judicial Review"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Professor Notes
-                  </label>
-                  <textarea
-                    className="min-h-[110px] w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500"
-                    placeholder="Add your own study notes here..."
-                  />
-                </div>
-              </div>
-            </section>
-
-            <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Quick Actions</h2>
-              <div className="mt-4 grid gap-3">
-                <button className="rounded-2xl bg-slate-100 px-4 py-3 text-left text-sm font-medium hover:bg-slate-200">
-                  Highlight key rule
+              <div className="mt-5 flex gap-3 justify-end">
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  disabled={!fullBrief}
+                  className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {copied ? "Copied!" : "Copy Brief"}
                 </button>
-                <button className="rounded-2xl bg-slate-100 px-4 py-3 text-left text-sm font-medium hover:bg-slate-200">
-                  Turn into flashcards
-                </button>
-                <button className="rounded-2xl bg-slate-100 px-4 py-3 text-left text-sm font-medium hover:bg-slate-200">
-                  Compare to another brief
-                </button>
-                <button className="rounded-2xl bg-slate-100 px-4 py-3 text-left text-sm font-medium hover:bg-slate-200">
-                  Print study version
+
+                <button
+                  type="button"
+                  className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-slate-100"
+                >
+                  Export PDF
                 </button>
               </div>
+              
             </section>
-
-            <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Progress</h2>
-              <div className="mt-4 rounded-2xl bg-slate-100 p-4">
-                <div className="flex items-center justify-between text-sm font-medium">
-                  <span>Status</span>
-                  <span>{brief ? "Complete" : loading ? "Working" : "Waiting"}</span>
-                </div>
-
-                <div className="mt-3 h-3 rounded-full bg-slate-200">
-                  <div
-                    className={`h-3 rounded-full bg-slate-900 transition-all ${
-                      brief ? "w-full" : loading ? "w-2/3" : "w-1/4"
-                    }`}
-                  />
-                </div>
-
-                <p className="mt-3 text-sm text-slate-500">
-                  {brief
-                    ? "Your case brief has been generated and is ready to review."
-                    : loading
-                    ? "Generating your structured brief now."
-                    : "Paste a case and generate a brief to begin."}
-                </p>
-              </div>
-            </section>
-          </aside>
         </div>
       </div>
     </div>

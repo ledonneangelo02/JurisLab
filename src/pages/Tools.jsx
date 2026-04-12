@@ -1,9 +1,9 @@
-import BriefGenInput from '../components/BriefGenInput'
+import BriefGenerator from '../components/BriefGenerator'
 export default function Tools() {
   return (
     
     <div className="pt-20">
-      <BriefGenInput />
+      <BriefGenerator />
     </div>
     
   )
