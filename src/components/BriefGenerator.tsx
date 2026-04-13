@@ -1,14 +1,28 @@
 import { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
+interface Brief {
+  caseName?: string;
+  evidentiaryFacts?: string;
+  proceduralFacts?: string;
+  issue?: string;
+  courtHolding?: string;
+  ruleAppliedOrCreated?: string;
+  courtReasoning?: string;
+  judgment?: string;
+  concurringOpinions?: string;
+  dissentingOpinions?: string;
+  [key: string]: string | undefined;
+}
+
 export default function BriefGenerator() {
   const [text, setText] = useState("");
-  const [brief, setBrief] = useState(null);
+  const [brief, setBrief] = useState<Brief | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE_URL = (import.meta as any).env.VITE_API_BASE_URL;
 
   const sections = [
     "Case Name",
@@ -35,7 +49,7 @@ export default function BriefGenerator() {
     { label: "Dissenting Opinions", key: "dissentingOpinions", number: 9 },
   ];
 
-  const formatSectionContent = (value) => {
+  const formatSectionContent = (value: string) => {
     if (!value || !value.trim()) {
       return "Not clearly stated in the excerpt.";
     }
@@ -86,7 +100,7 @@ export default function BriefGenerator() {
       ...sectionMap.flatMap((section) => [
         `## (${section.number}) ${section.label}`,
         "",
-        formatSectionContent(brief[section.key]),
+        formatSectionContent(brief[section.key] || ""),
         "",
       ]),
     ].join("\n");
@@ -104,7 +118,7 @@ export default function BriefGenerator() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -128,7 +142,7 @@ export default function BriefGenerator() {
 
       setBrief(data);
     } catch (err) {
-      setError(err.message || "Something went wrong.");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setLoading(false);
     }

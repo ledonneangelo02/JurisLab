@@ -1,4 +1,4 @@
-import PricingCard from '../components/PricingCard'
+import PricingCard from '../components/PricingCard.js'
 
 export default function Pricing() {
   return (

@@ -1,5 +1,5 @@
-import WelcomeComp from "../components/WelcomeComp/WelcomeComp"
-import HandWriting from "../components/WelcomeComp/HandWriting"
+import WelcomeComp from "../components/WelcomeComp/WelcomeComp.js"
+import HandWriting from "../components/WelcomeComp/HandWriting.js"
 
 export default function Home() {
   return (

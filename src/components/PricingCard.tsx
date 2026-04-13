@@ -1,5 +1,11 @@
 
-export default function PricingCard({ title, price, features }) {
+interface PricingCardProps {
+  title: string;
+  price: string;
+  features: string;
+}
+
+export default function PricingCard({ title, price, features }: PricingCardProps) {
 
   return (
     <div className="mt-15 h-150 w-75 mx-auto px-4 bg-gray-100 rounded-lg shadow-md">

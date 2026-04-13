@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Layout/Navbar'
-import Home from './pages/Home'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Footer from './components/Layout/Footer'
-import Tools from './pages/Tools'
-import Pricing from './pages/Pricing'
-import CaseBriefGenerator from './pages/CaseBriefGenerator'
+import Navbar from './components/Layout/Navbar.js'
+import Home from './pages/Home.js'
+import About from './pages/About.js'
+import Contact from './pages/Contact.js'
+import Footer from './components/Layout/Footer.js'
+import Tools from './pages/Tools.js'
+import Pricing from './pages/Pricing.js'
+import CaseBriefGenerator from './pages/CaseBriefGenerator.js'
 
 function App() {
   return (
