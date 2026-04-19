@@ -1,4 +1,4 @@
-import BriefGenerator from '../components/BriefGenerator.js'
+import BriefGenerator from '../components/CaseBriefGenerator/BriefGenerator.js'
 export default function CaseBriefGenerator() {
   return (
     <div className="pt-20">
@@ -6,6 +6,7 @@ export default function CaseBriefGenerator() {
         <h1 className="text-4xl font-bold mb-4">Case Brief Generator</h1>
         <p className="text-lg text-gray-700">Generate concise case briefs with ease. Input your case details and let our tool do the rest.</p>
       </div>
+      
      
       <BriefGenerator />
     </div>

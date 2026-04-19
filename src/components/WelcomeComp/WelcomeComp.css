@@ -1,63 +1,106 @@
 .welcome-wrapper {
-  width: 100%;
-  min-height: 100vh;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: transparent;
+  gap: 1rem;
 }
 
-.welcome-inner {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 0;
-}
-
-.welcome-letter {
-  height: 80px;
-  width: auto;
+.word svg {
   display: block;
-  opacity: 0;
-  transform: translateY(12px) scale(0.96);
-  filter: blur(2px);
-  margin-right: -50px;
+  width: 100%;
+  height: auto;
+}
 
-  animation-name: writeIn;
-  animation-duration: 0.35s;
+.handwriting-svg {
+  width: min(1400px, 95vw);
+  height: auto;
+  overflow: visible;
+}
+
+/* base draw setup for every path */
+.stroke {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+}
+
+/* letters that should draw and fill at the same time */
+.letter-W,
+.letter-E,
+.letter-L,
+.letter-C,
+.letter-O,
+.letter-M,
+.letter-U,
+.letter-R,
+.letter-I,
+.letter-S,
+.letter-A,
+.letter-B {
+  fill: black;
+  fill-opacity: 0;
+  animation-name: draw, inkFill;
+  animation-duration: 0.85s, 0.85s;
+  animation-timing-function: ease, ease;
+  animation-fill-mode: forwards, forwards;
+}
+
+/* true stroke-only letters */
+.letter-J,
+.letter-capital-L,
+.letter-T-stroke {
+  fill: none;
+  stroke-width: 8px;
+  animation-name: draw;
+  animation-duration: 0.85s;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
-  animation-iteration-count: 1;
 }
 
-.letter-space {
-  width: 6px;
-  height: 1px;
+/* unified timing: fill starts at the SAME time as draw */
+.s1  { animation-delay: 0.00s, 0.00s; }
+.s2  { animation-delay: 0.20s, 0.20s; }
+.s3  { animation-delay: 0.38s, 0.38s; }
+.s4  { animation-delay: 0.56s, 0.56s; }
+.s5  { animation-delay: 0.74s, 0.74s; }
+.s6  { animation-delay: 0.92s, 0.92s; }
+.s7  { animation-delay: 1.12s, 1.12s; }
+.s8  { animation-delay: 1.45s; }
+.s9  { animation-delay: 1.68s, 1.68s; }
+.s10 { animation-delay: 2.00s; }
+.s11 { animation-delay: 2.20s, 2.20s; }
+.s12 { animation-delay: 2.40s, 2.40s; }
+.s13 { animation-delay: 2.58s, 2.58s; }
+.s14 { animation-delay: 2.74s, 2.74s; }
+.s15 { animation-delay: 2.95s; }
+.s16 { animation-delay: 3.15s, 3.15s; }
+.s17 { animation-delay: 3.38s, 3.38s; }
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-.word-space {
-  width: 28px;
-  height: 1px;
-}
-
-@keyframes writeIn {
+@keyframes inkFill {
   0% {
-    opacity: 0;
-    transform: translateY(12px) scale(0.96);
-    filter: blur(3px);
+    fill-opacity: 0;
   }
-
-  60% {
-    opacity: 1;
-    transform: translateY(0) scale(1.02);
-    filter: blur(0);
+  25% {
+    fill-opacity: 0.2;
   }
-
+  45% {
+    fill-opacity: 0.45;
+  }
+  75% {
+    fill-opacity: 0.8;
+  }
   100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    fill-opacity: 1;
   }
 }

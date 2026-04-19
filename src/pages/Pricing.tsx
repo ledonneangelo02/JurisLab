@@ -1,26 +1,45 @@
-import PricingCard from '../components/PricingCard.js'
+import PricingCard from '../components/PricingCard/PricingCard.js'
 
 export default function Pricing() {
   return (
-    <div className="pt-20 text-center">
+    <div className="pt-30 text-center">
+      <div className="max-w-3xl mx-auto px-4 bg-gray-200 rounded-lg shadow-md p-10">
+        <h1 className="text-4xl font-bold mb-4">Pricing Plans</h1>
+        <p className="text-lg text-gray-700">
+          Choose the plan that best fits your needs. Whether you're a student, legal professional, or researcher, we have a plan for you.
+        </p>
+      </div>
+      <hr className=" mt-5 border-t-4 border-dashed border-black" />
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         <PricingCard
           title="Free Plan"
           price="Free"
-          features="Access to basic legal research tools, 10 document analysis credits per month, and community support."
-        />
+          featured={true}
+          features={[
+            "Access to basic legal research tools",
+            "100 document analysis credits per month",
+            "Email support",
+          ]} description={''} buttonText={''}        />
 
         <PricingCard
           title="Basic Plan"
           price="$9.99/month"
-          features="Access to basic legal research tools, 100 document analysis credits per month, and email support."
-        />
+          featured={true}
+          features={[
+            "Access to basic legal research tools",
+            "100 document analysis credits per month",
+            "Email support",
+          ]} description={''} buttonText={''}        />
 
         <PricingCard
           title="Pro Plan"
           price="$29.99/month"
-          features="Includes all Basic features plus 500 document analysis credits per month, priority email support, and access to advanced analytics tools."
-        />
+          features={[
+            "Access to all Basic features",
+            "500 document analysis credits per month",
+            "Priority email support",
+            "Access to advanced analytics tools",
+          ]} description={''} buttonText={''}        />
       </div>
       <hr className=" mt-5 border-t-4 border-dashed border-black" />
       <div className="max-w-4xl mx-auto px-4 mt-8">

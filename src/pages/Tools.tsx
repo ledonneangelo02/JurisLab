@@ -1,4 +1,4 @@
-import BriefGenerator from '../components/BriefGenerator.js'
+import BriefGenerator from '../components/CaseBriefGenerator/BriefGenerator.js'
 export default function Tools() {
   return (
     
