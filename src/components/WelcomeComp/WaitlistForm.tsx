@@ -5,27 +5,24 @@ import "./WelcomeComp.css"
 export default function WaitlistForm() {
   
   const [WaitlistEmail, setWaitlistEmail] = useState("")
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   //const API_BASE_URL = (import.meta as any).env.VITE_API_BASE_URL;
   const API_BASE_URL = (import.meta as any).env.VITE_SITE_API;
 
+  
   const joinWaitlist = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/JoinWaitList`, {
+      const response = await fetch(`${API_BASE_URL}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          
-          firstName: firstName,
-          lastName: lastName,          
+  
           email: WaitlistEmail,
-
 
         }),
       });
@@ -49,22 +46,6 @@ export default function WaitlistForm() {
       <form onSubmit={joinWaitlist} className="flex flex-col gap-4">
         
         <input
-          type="text"
-          placeholder="Enter your first name"
-          className="p-3 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Enter your last name"
-          className="p-3 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-
-        <input
           type="email"
           placeholder="Enter your email"
           className="p-3 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
@@ -72,11 +53,27 @@ export default function WaitlistForm() {
           onChange={(e) => setWaitlistEmail(e.target.value)}
         />
 
+
+        <div className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            id="AcceptTerms"
+            name="AcceptTerms"
+            required
+            className="mt-1"
+          />
+          <label htmlFor="AcceptTerms" className="text-xs">
+            I consent to receive consulting services by email for information about the material  to JurisLab collecting and storing my email address for the purpose of providing updates, early access, and marketing communications.
+          </label>
+        </div>
+        
+
         <button style={{ fontFamily: "Michaela-Grace" }} className="self-center w-fit text-3xl bg-black text-white py-2 px-10 rounded-md hover:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-          type="submit"
-          >
+        type="submit"
+        >
           Join The Waitlist
         </button>
+
       </form>
     </div>
   )
