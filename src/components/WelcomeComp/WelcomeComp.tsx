@@ -6,14 +6,20 @@ import WaitlistForm from "./WaitlistForm"
 export default function WelcomeComp() {
 
   return (
-    <div className="welcome grid grid-cols-2 gap-4">
-      <div className="welcome-handwriting-animation flex items-center justify-center"> 
-        <HandWriting />
-      </div>
-      <div className="waitlist-form col-span-1 flex flex-col justify-center">
+    <div className="welcome-container flex flex-col items-center">
+      <div className="waitlist-form">
         <WaitlistForm />
       </div>
-
-    </div>  
+      <hr className="w-48 h-1 mx-auto my-4 bg-neutral-quaternary border-3 rounded-sm md:my-10"/>
+      <div className="m-10">
+        <div className="grid grid-cols-3">
+          <h1 className="col-span-1 flex flex-col text-3xl font-bold ">
+            JurisSuite Case Briefing
+          </h1>
+                  
+        </div>
+        
+      </div>
+    </div>
   )
 }
