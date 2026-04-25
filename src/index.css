@@ -44,15 +44,5 @@ html, body, #root {
 body {
   margin: 0;
   font-family: 'Century Schoolbook', sans-serif;
-  line-height: 1.5;
-  color: #111827;
-  background-color: #FFF9C4; /* soft legal pad yellow */
-
-  background-image:
-    repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 28px,
-      #b8d7ff 29px
-    );
+  background-color: #E4C2C6;
 }

@@ -5,8 +5,8 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full h-20 bg-black text-white flex items-center px-6 z-50">
       
       <div className="flex items-center gap-2">
-        <img src="/jurislab_icon_white.svg" alt="JurisLab Icon" className="h-10 w-10" />
-        <span className="font-bold text-2xl">JurisLab</span>
+        <img src="/jurisSuite_icon_white.svg" alt="JurisSuite Icon" className="h-10 w-10" />
+        <span className="font-bold text-2xl">JurisSuite</span>
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 flex gap-8 text-lg items-center">
@@ -27,9 +27,6 @@ export default function Navbar() {
             <a href="/tools/case-analyzer" className="block px-4 py-2 hover:bg-gray-100">
               Case Analyzer
             </a>
-            <a href="/tools/contract-review" className="block px-4 py-2 hover:bg-gray-100">
-              Contract Review
-            </a>
           </div>
         </div>
 
@@ -44,7 +41,7 @@ export default function Navbar() {
         </a>
       </div>
 
-      <div className="absolute right-6">
+      <div className="absolute right-6 hidden">
         <button className="bg-white text-lg text-black px-3 py-1 rounded hover:bg-gray-300 transition">
           Sign In
         </button>
