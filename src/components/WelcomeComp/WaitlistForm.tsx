@@ -41,6 +41,7 @@ export default function WaitlistForm() {
 
   return (
     <div className="waitlist-form-container justify-center bg-gray-100 p-8 m-5 rounded-lg shadow-md">
+      
       <h2 className="text-3xl font-bold mb-4">Join the Waitlist</h2>
       <p className="mb-6">Be the first to know when JurisSuite launches. Sign up for our waitlist and get exclusive early access!</p>
       <form onSubmit={joinWaitlist} className="flex flex-col gap-4 ">
