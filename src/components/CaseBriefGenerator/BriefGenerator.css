@@ -1,0 +1,37 @@
+.brief-button-primary,
+.brief-button-secondary {
+  border: 1px solid transparent;
+  color: var(--button-primary-text);
+  box-shadow: 0 10px 20px var(--button-primary-shadow);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.brief-button-primary {
+  background: var(--button-primary-bg);
+  border-color: var(--button-primary-border);
+}
+
+.brief-button-primary:hover:not(:disabled) {
+  background: var(--button-primary-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px var(--button-primary-shadow);
+}
+
+.brief-button-secondary {
+  background: var(--button-secondary-bg);
+  border-color: var(--button-secondary-border);
+  color: var(--button-secondary-text);
+  box-shadow: 0 10px 20px var(--button-secondary-shadow);
+}
+
+.brief-button-secondary:hover:not(:disabled) {
+  background: var(--button-secondary-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px var(--button-secondary-shadow);
+}
+
+.brief-button-primary:focus-visible,
+.brief-button-secondary:focus-visible {
+  outline: 3px solid var(--button-focus-ring);
+  outline-offset: 3px;
+}

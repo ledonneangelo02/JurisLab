@@ -1,52 +1,88 @@
+import { useEffect } from "react"
+import notepadMagnifyingImage from "../../assets/images/Notepad_and_magnifying.png"
+import notepadPenImage from "../../assets/images/Notepad_and_Pen.png"
+import scalesImage from "../../assets/images/scales.png"
 import "./WelcomeComp.css"
 import WaitlistForm from "./WaitlistForm"
 
+const toolCards = [
+  {
+    title: "Brief Generator",
+    description: "Turn long case text into a clean brief with facts, issues, holdings, and reasoning.",
+    image: notepadMagnifyingImage,
+    alt: "Notepad and magnifying glass representing generated case briefs",
+  },
+  {
+    title: "Case Analyzer",
+    description: "Scan notes and case materials for the details that matter most before class.",
+    image: scalesImage,
+    alt: "Scales representing legal case analysis",
+  },
+  {
+    title: "Outline Builder",
+    description: "Shape class notes into organized outlines you can review before exams.",
+    image: notepadPenImage,
+    alt: "Notepad and pen representing legal outline drafting",
+  },
+]
+
 export default function WelcomeComp() {
+  useEffect(() => {
+    if (window.location.hash !== "#waitlist") return
+
+    window.requestAnimationFrame(() => {
+      document.getElementById("waitlist")?.scrollIntoView({ block: "start" })
+    })
+  }, [])
+
   return (
     <section className="welcome-container flex flex-col w-full justify-center">
       <div className="hero-grid">
-        <div className="handwriting-container flex-1">
-          <h2>Filler</h2>
-        </div>
-
         <div className="description-container flex-1">
-          <p className="eyebrow">Legal intelligence designed for courtroom clarity</p>
-          <h1 className="hero-title">
-            Craft case briefs that feel premium, confident, and effortless.
-          </h1>
+          <p className="eyebrow">A smart, all-in-one law school study companion</p>
+
           <p className="hero-copy">
-            JurisSuite transforms your facts and filings into polished briefing
-            summaries with elegant structure and trusted legal tone.
+            Focus on learning and analysis while we handle the formatting and organization.
           </p>
 
           <div className="hero-actions">
             <a href="/pricing" className="primary-cta">View Plans</a>
-            <a href="/contact" className="secondary-cta">Book a Demo</a>
           </div>
+        </div>
+
+        <div className="primary-description-container flex-1">
+          <h3 className="hero-title">
+            JurisSuite simplifies your law school workload
+          </h3>
+          <ul className="feature-list">
+            <li>Brief Generator: Create clear, concise briefs in minutes.</li>
+            <li>Case Analyzer: Instantly extract key facts, issues, and holdings.</li>
+            <li>Flash Cards: Reinforce your memory with interactive study cards.</li>
+            <li>Outline Builder: Create comprehensive outlines in minutes.</li>
+          </ul>
         </div>
       </div>
 
       <hr className="divider" />
 
-      <div className="waitlist-form container">
+      <div id="waitlist" className="waitlist-form container">
         <WaitlistForm />
       </div>
 
       <hr className="divider" />
 
       <div className="feature-panel">
-        <div className="feature-card">
-          <h2>Briefs in minutes</h2>
-          <p>Capture key facts, issues, holdings, and reasoning without the manual grind.</p>
-        </div>
-        <div className="feature-card">
-          <h2>Designed for counsel</h2>
-          <p>Visual clarity, confident language, and an elegant lawyer-first presentation.</p>
-        </div>
-        <div className="feature-card">
-          <h2>Trusted workflow</h2>
-          <p>Seamless integration with your case intake and drafting process.</p>
-        </div>
+        {toolCards.map((tool) => (
+          <article className="feature-card" key={tool.title}>
+            <div className="feature-card-media">
+              <img src={tool.image} alt={tool.alt} loading="lazy" />
+            </div>
+            <div className="feature-card-body">
+              <h2>{tool.title}</h2>
+              <p>{tool.description}</p>
+            </div>
+          </article>
+        ))}
       </div>
 
       <hr className="divider" />

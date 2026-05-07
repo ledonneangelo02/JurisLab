@@ -1,6 +1,18 @@
 import "./FooterHeader.css"
 
 export default function Navbar() {
+  const scrollToWaitlist = () => {
+    const waitlistSection = document.getElementById("waitlist")
+
+    if (waitlistSection) {
+      waitlistSection.scrollIntoView({ behavior: "smooth", block: "start" })
+      window.history.replaceState(null, "", "#waitlist")
+      return
+    }
+
+    window.location.href = "/#waitlist"
+  }
+
   return (
     <nav className="FooterHeader main-nav">
       <div className="nav-brand">
@@ -11,22 +23,22 @@ export default function Navbar() {
       </div>
 
       <div className="nav-links">
-        <a href="/" className="nav-item">Home</a>
-        <div className="nav-item dropdown">
+        <a href="/" className="nav-item hidden">Home</a>
+        <div className="nav-item dropdown hidden">
           <a href="/tools" className="dropdown-trigger">Tools</a>
           <div className="dropdown-menu">
             <a href="/tools/brief-generator" className="dropdown-link">Brief Generator</a>
             <a href="/tools/case-analyzer" className="dropdown-link">Case Analyzer</a>
           </div>
         </div>
-        <a href="/pricing" className="nav-item">Pricing</a>
-        <a href="/about" className="nav-item">About Us</a>
-        <a href="/contact" className="nav-item">Contact</a>
+        <a href="/pricing" className="nav-item hidden">Pricing</a>
+        <a href="/about" className="nav-item hidden">About Us</a>
+        <a href="/contact" className="nav-item hidden">Contact</a>
       </div>
 
       <button
         className="nav-button"
-        onClick={() => window.location.href = "/waitlist"}
+        onClick={scrollToWaitlist}
       >
         Join Waitlist
       </button>

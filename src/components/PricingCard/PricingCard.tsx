@@ -5,7 +5,9 @@ interface PricingCardProps {
   description: string;
   features: string[];
   buttonText: string;
+  buttonHref?: string;
   featured?: boolean;
+  badgeText?: string;
 }
 
 export default function PricingCard({
@@ -15,14 +17,17 @@ export default function PricingCard({
   description,
   features,
   buttonText,
+  buttonHref = "/contact",
   featured = false,
+  badgeText = "Best Value",
 }: PricingCardProps) {
   return (
-    <div className={`pricing-card ${featured ? "pricing-card-featured" : ""}`}>
-      {featured && <div className="pricing-card-badge">Most Popular</div>}
-
-      <div>
-        <h2 className="pricing-card-plan">{title}</h2>
+    <article className={`pricing-card ${featured ? "pricing-card-featured" : ""}`}>
+      <div className="pricing-card-content">
+        <div className="pricing-card-header">
+          <h2 className="pricing-card-plan">{title}</h2>
+          {featured && <span className="pricing-card-badge">{badgeText}</span>}
+        </div>
 
         <div className="pricing-card-price">
           {price}
@@ -40,13 +45,14 @@ export default function PricingCard({
         </ul>
       </div>
 
-      <button
+      <a
+        href={buttonHref}
         className={`pricing-card-button ${
           featured ? "" : "pricing-card-button-secondary"
         }`}
       >
         {buttonText}
-      </button>
-    </div>
+      </a>
+    </article>
   );
 }

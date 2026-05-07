@@ -105,7 +105,7 @@ export default function BriefGenerator() {
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
-                    className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm hover:bg-slate-100"
+                    className="brief-button-secondary rounded-xl px-3 py-2 text-sm font-medium"
                     onClick={() => {
                       setText("");
                       setBrief(null);
@@ -119,7 +119,7 @@ export default function BriefGenerator() {
                 <button
                   type="submit"
                   disabled={loading || !text.trim()}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="brief-button-primary inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading && (
                     <span
