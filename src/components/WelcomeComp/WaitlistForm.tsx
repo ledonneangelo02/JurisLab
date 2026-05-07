@@ -51,7 +51,12 @@ export default function WaitlistForm() {
   };
 
   return (
-  <div className="waitlist-form-container bg-gray-100 p-8 m-5 rounded-lg shadow-md">
+  <div className="waitlist-form-container">
+    <span className="thumb-tack thumb-tack-top-left" aria-hidden="true" />
+    <span className="thumb-tack thumb-tack-top-right" aria-hidden="true" />
+    <span className="thumb-tack thumb-tack-bottom-left" aria-hidden="true" />
+    <span className="thumb-tack thumb-tack-bottom-right" aria-hidden="true" />
+
     <div className="flex flex-col items-center text-center mb-8">
       <h2 className="text-3xl font-bold mb-4">Join the Waitlist</h2>
       <p className="text-gray-600 max-w-xl">
@@ -78,7 +83,7 @@ export default function WaitlistForm() {
 
       <button
         style={{ fontFamily: "Michaela-Grace" }}
-        className="text-3xl bg-black text-white py-2 px-10 rounded-md hover:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-60"
+        className="waitlist-submit-button text-3xl py-2 px-10 rounded-md focus:outline-none disabled:opacity-60"
         type="submit"
         disabled={loading}
       >

@@ -66,6 +66,19 @@
     4.5rem 0,
     0 1.25rem,
     0 0;
+
+  --button-primary-bg: #14213d;
+  --button-primary-hover-bg: #1e3a5f;
+  --button-primary-text: #fff8e7;
+  --button-primary-border: rgba(255, 248, 231, 0.36);
+  --button-primary-shadow: rgba(20, 33, 61, 0.28);
+
+  --button-secondary-bg: #365f5c;
+  --button-secondary-hover-bg: #457773;
+  --button-secondary-text: #fff8e7;
+  --button-secondary-border: rgba(255, 248, 231, 0.28);
+  --button-secondary-shadow: rgba(54, 95, 92, 0.24);
+  --button-focus-ring: rgba(30, 58, 95, 0.32);
 }
 
 html, body, #root {
@@ -76,8 +89,12 @@ body {
   margin: 0;
   font-family: 'Century Schoolbook', sans-serif;
   background-color: var(--paper-background-color);
+}
+
+#root {
+  background-color: var(--paper-background-color);
   background-image: var(--paper-background-image);
   background-size: var(--paper-background-size);
   background-position: var(--paper-background-position);
-  background-attachment: fixed;
+  background-attachment: scroll;
 }

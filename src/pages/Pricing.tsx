@@ -1,84 +1,115 @@
 import PricingCard from '../components/PricingCard/PricingCard.js'
+import '../components/PricingCard/PricingCard.css'
+
+const plans = [
+  {
+    title: 'Free',
+    price: '$0',
+    period: '/month',
+    description: 'A focused starter plan for trying JurisSuite with light coursework.',
+    features: [
+      'Brief Generator access',
+      '10 document analysis credits per month',
+      'Basic study workflow tools',
+      'Community support',
+    ],
+    buttonText: 'Start Free',
+    buttonHref: '/contact',
+  },
+  {
+    title: 'Basic',
+    price: '$9.99',
+    period: '/month',
+    description: 'For students who brief cases regularly and want faster prep each week.',
+    features: [
+      'Brief Generator and Case Analyzer access',
+      '100 document analysis credits per month',
+      'Flash cards and outline builder',
+      'Email support',
+    ],
+    buttonText: 'Choose Basic',
+    buttonHref: '/contact',
+    featured: true,
+  },
+  {
+    title: 'Pro',
+    price: '$29.99',
+    period: '/month',
+    description: 'For heavy research weeks, clinics, journals, and advanced legal analysis.',
+    features: [
+      'Everything in Basic',
+      '500 document analysis credits per month',
+      'Advanced analytics tools',
+      'Priority email support',
+    ],
+    buttonText: 'Choose Pro',
+    buttonHref: '/contact',
+  },
+]
+
+const comparisonRows = [
+  ['Document analysis credits', '10/month', '100/month', '500/month'],
+  ['Brief Generator', 'Yes', 'Yes', 'Yes'],
+  ['Case Analyzer', 'Limited', 'Yes', 'Yes'],
+  ['Flash cards and outlines', 'No', 'Yes', 'Yes'],
+  ['Support', 'Community', 'Email', 'Priority email'],
+]
 
 export default function Pricing() {
   return (
-    <div className="pt-30 text-center">
-      <div className="max-w-3xl mx-auto px-4 bg-gray-200 rounded-lg shadow-md p-10">
-        <h1 className="text-4xl font-bold mb-4">Pricing Plans</h1>
-        <p className="text-lg text-gray-700">
-          Choose the plan that best fits your needs. Whether you're a student, legal professional, or researcher, we have a plan for you.
-        </p>
-      </div>
-      <hr className=" mt-5 border-t-4 border-dashed border-black" />
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <PricingCard
-          title="Free Plan"
-          price="Free"
-          featured={true}
-          features={[
-            "Access to basic legal research tools",
-            "100 document analysis credits per month",
-            "Email support",
-          ]} description={''} buttonText={''}        />
+    <section className="pricing-page">
+      <div className="pricing-shell">
+        <header className="pricing-hero">
+          <p className="pricing-eyebrow">Simple plans for law school work</p>
+          <h1>Choose the JurisSuite plan that fits your study load.</h1>
+          <p>
+            Start small, then move up when your reading list gets heavier. Each plan is
+            built around faster briefs, cleaner analysis, and less formatting friction.
+          </p>
 
-        <PricingCard
-          title="Basic Plan"
-          price="$9.99/month"
-          featured={true}
-          features={[
-            "Access to basic legal research tools",
-            "100 document analysis credits per month",
-            "Email support",
-          ]} description={''} buttonText={''}        />
+          <div className="pricing-hero-points" aria-label="Pricing highlights">
+            <span>No long-term contract</span>
+            <span>Built for case prep</span>
+            <span>Upgrade anytime</span>
+          </div>
+        </header>
 
-        <PricingCard
-          title="Pro Plan"
-          price="$29.99/month"
-          features={[
-            "Access to all Basic features",
-            "500 document analysis credits per month",
-            "Priority email support",
-            "Access to advanced analytics tools",
-          ]} description={''} buttonText={''}        />
+        <div className="pricing-grid" aria-label="Pricing plans">
+          {plans.map((plan) => (
+            <PricingCard key={plan.title} {...plan} />
+          ))}
+        </div>
+
+        <section className="pricing-comparison" aria-labelledby="pricing-comparison-title">
+          <div className="pricing-section-header">
+            <p className="pricing-eyebrow">Compare plans</p>
+            <h2 id="pricing-comparison-title">What each plan includes</h2>
+          </div>
+
+          <div className="pricing-table-scroll">
+            <table className="pricing-table">
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col">Free</th>
+                  <th scope="col">Basic</th>
+                  <th scope="col">Pro</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map(([feature, free, basic, pro]) => (
+                  <tr key={feature}>
+                    <th scope="row">{feature}</th>
+                    <td>{free}</td>
+                    <td>{basic}</td>
+                    <td>{pro}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
-      <hr className=" mt-5 border-t-4 border-dashed border-black" />
-      <div className="max-w-4xl mx-auto px-4 mt-8">
-        <h2 className="text-2xl font-bold mb-4">Compare Plans</h2>
-        <p className="text-lg text-gray-700 mb-6">
-          Choose the plan that best fits your needs. Whether you're a student, legal professional, or researcher, we have a plan for you.
-        </p>
-        <table className="bg-white w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Feature</th>
-              <th className="border border-gray-300 px-4 py-2">Free Plan</th>
-              <th className="border border-gray-300 px-4 py-2">Basic Plan</th>
-              <th className="border border-gray-300 px-4 py-2">Pro Plan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-gray-300 px-4 py-2">Document Analysis Credits</td>
-              <td className="border border-gray-300 px-4 py-2">10/month</td>
-              <td className="border border-gray-300 px-4 py-2">100/month</td>
-              <td className="border border-gray-300 px-4 py-2">500/month</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 px-4 py-2">Support</td>
-              <td className="border border-gray-300 px-4 py-2">Community Support</td>
-              <td className="border border-gray-300 px-4 py-2">Email Support</td>
-              <td className="border border-gray-300 px-4 py-2">Priority Email Support</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 px-4 py-2">Advanced Analytics Tools</td>
-              <td className="border border-gray-300 px-4 py-2">No</td>
-              <td className="border border-gray-300 px-4 py-2">No</td>
-              <td className="border border-gray-300 px-4 py-2">Yes</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </section>
   )
 }
-
