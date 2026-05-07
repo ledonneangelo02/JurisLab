@@ -1,106 +1,198 @@
-.welcome-wrapper {
+.welcome-container {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+
+  min-height: 100vh;
+  padding: 3rem 2rem 4rem;
+  padding-top: calc(3rem + 88px);
+
+  background: transparent;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
   align-items: center;
+}
+
+.handwriting-container {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 1.25rem;
+  padding: 2rem;
+
+  background-color: var(--paper-background-color);
+  background-image: var(--paper-background-image);
+  background-size: var(--paper-background-size);
+  background-position: var(--paper-background-position);
+
+  border: 1px solid rgba(99, 78, 35, 0.18);
+
+  box-shadow:
+    0 24px 60px rgba(36, 28, 12, 0.16),
+    0 4px 12px rgba(36, 28, 12, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.handwriting-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 4.5rem;
+  width: 1px;
+  height: 100%;
+
+  background: rgba(164, 44, 44, 0.32);
+}
+
+.handwriting-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%);
+
+  mix-blend-mode: soft-light;
+}
+
+.description-container {
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 35%),
+    linear-gradient(145deg, #111111 0%, #1f1a16 100%);
+  color: #f8f5ee;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 30px 70px rgba(15, 12, 10, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.description-container h1,
+.description-container h2,
+.description-container h3 {
+  color: #fff8e7;
+}
+
+.description-container p {
+  color: rgba(248, 245, 238, 0.78);
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+  color: rgba(255, 215, 120, 0.95);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(2.6rem, 4vw, 4rem);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.hero-copy {
+  margin-top: 1.4rem;
+  color: rgba(248, 245, 238, 0.86);
+  max-width: 38rem;
+  line-height: 1.8;
+  font-size: 1.06rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
-.word svg {
-  display: block;
-  width: 100%;
-  height: auto;
+.primary-cta,
+.secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
 }
 
-.handwriting-svg {
-  width: min(1400px, 95vw);
-  height: auto;
-  overflow: visible;
+.primary-cta {
+  background: #f8e8a1;
+  color: #09070a;
+  box-shadow: 0 18px 30px rgba(248, 232, 161, 0.22);
 }
 
-/* base draw setup for every path */
-.stroke {
-  fill: transparent;
-  stroke: black;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: 500;
-  stroke-dashoffset: 500;
+.primary-cta:hover {
+  transform: translateY(-1px);
 }
 
-/* letters that should draw and fill at the same time */
-.letter-W,
-.letter-E,
-.letter-L,
-.letter-C,
-.letter-O,
-.letter-M,
-.letter-U,
-.letter-R,
-.letter-I,
-.letter-S,
-.letter-A,
-.letter-B {
-  fill: black;
-  fill-opacity: 0;
-  animation-name: draw, inkFill;
-  animation-duration: 0.85s, 0.85s;
-  animation-timing-function: ease, ease;
-  animation-fill-mode: forwards, forwards;
+.secondary-cta {
+  background: rgba(255, 255, 255, 0.07);
+  color: #f8f1e6;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* true stroke-only letters */
-.letter-J,
-.letter-capital-L,
-.letter-T-stroke {
-  fill: none;
-  stroke-width: 8px;
-  animation-name: draw;
-  animation-duration: 0.85s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
+.secondary-cta:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
-/* unified timing: fill starts at the SAME time as draw */
-.s1  { animation-delay: 0.00s, 0.00s; }
-.s2  { animation-delay: 0.20s, 0.20s; }
-.s3  { animation-delay: 0.38s, 0.38s; }
-.s4  { animation-delay: 0.56s, 0.56s; }
-.s5  { animation-delay: 0.74s, 0.74s; }
-.s6  { animation-delay: 0.92s, 0.92s; }
-.s7  { animation-delay: 1.12s, 1.12s; }
-.s8  { animation-delay: 1.45s; }
-.s9  { animation-delay: 1.68s, 1.68s; }
-.s10 { animation-delay: 2.00s; }
-.s11 { animation-delay: 2.20s, 2.20s; }
-.s12 { animation-delay: 2.40s, 2.40s; }
-.s13 { animation-delay: 2.58s, 2.58s; }
-.s14 { animation-delay: 2.74s, 2.74s; }
-.s15 { animation-delay: 2.95s; }
-.s16 { animation-delay: 3.15s, 3.15s; }
-.s17 { animation-delay: 3.38s, 3.38s; }
+.divider {
+  width: 4rem;
+  height: 0.2rem;
+  margin: 2.5rem auto;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(153, 121, 77, 0.1), rgba(159, 138, 98, 0.35), rgba(153, 121, 77, 0.1));
+}
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
+.waitlist-form.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.feature-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 50px rgba(15, 12, 10, 0.12);
+}
+
+.feature-card h2 {
+  margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: rgba(248, 245, 238, 0.8);
+  line-height: 1.8;
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
   }
-}
 
-@keyframes inkFill {
-  0% {
-    fill-opacity: 0;
-  }
-  25% {
-    fill-opacity: 0.2;
-  }
-  45% {
-    fill-opacity: 0.45;
-  }
-  75% {
-    fill-opacity: 0.8;
-  }
-  100% {
-    fill-opacity: 1;
+  .feature-panel {
+    grid-template-columns: 1fr;
   }
 }

@@ -37,12 +37,47 @@
   animation-delay: 0.5s;
 }
 
+:root {
+  --paper-background-color: #f7eeb8;
+  --paper-background-image:
+    linear-gradient(
+      90deg,
+      rgba(164, 44, 44, 0.28) 0,
+      rgba(164, 44, 44, 0.28) 1px,
+      transparent 1px,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(44, 87, 150, 0.22) 32px
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 255, 255, 0.08)
+    );
+  --paper-background-size:
+    100% 100%,
+    100% 32px,
+    100% 100%;
+  --paper-background-position:
+    4.5rem 0,
+    0 1.25rem,
+    0 0;
+}
+
 html, body, #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
   font-family: 'Century Schoolbook', sans-serif;
-  background-color: #E4C2C6;
+  background-color: var(--paper-background-color);
+  background-image: var(--paper-background-image);
+  background-size: var(--paper-background-size);
+  background-position: var(--paper-background-position);
+  background-attachment: fixed;
 }

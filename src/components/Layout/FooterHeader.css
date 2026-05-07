@@ -1,0 +1,126 @@
+.FooterHeader {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f6f2e7;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  backdrop-filter: blur(18px);
+  background: rgba(9, 7, 10, 0.82);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 20px 45px rgba(9, 7, 10, 0.18);
+  z-index: 50;
+}
+
+.nav-brand .brand-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-brand .brand-link:hover {
+  opacity: 0.88;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  margin-left: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-item,
+.dropdown-trigger {
+  color: #dcd6cc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.nav-item:hover,
+.dropdown-trigger:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  min-width: 220px;
+  border-radius: 1rem;
+  background: rgba(16, 14, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  padding: 0.75rem 0;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.85rem 1.1rem;
+  color: #e5e1dc;
+  text-decoration: none;
+}
+
+.dropdown-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.nav-button {
+  margin-left: auto;
+  padding: 0.92rem 1.5rem;
+  border-radius: 999px;
+  color: #09070a;
+  background: #f8e8a1;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(248, 232, 161, 0.22);
+}
+
+.page-footer {
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  background: linear-gradient(180deg, rgba(15, 13, 18, 0.95), rgba(24, 20, 24, 0.98));
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #bfb8a5;
+  font-size: 0.95rem;
+}

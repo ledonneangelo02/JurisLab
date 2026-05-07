@@ -1,52 +1,35 @@
-import React from 'react';
+import "./FooterHeader.css"
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full h-20 bg-black text-white flex items-center px-6 z-50">
-      
-      <div className="flex items-center gap-2">
-        <img src="/jurisSuite_icon_white.svg" alt="JurisSuite Icon" className="h-10 w-10" />
-        <span className="font-bold text-2xl">JurisSuite</span>
+    <nav className="FooterHeader main-nav">
+      <div className="nav-brand">
+        <a href="/" className="brand-link flex items-center gap-2">
+          <img src="/jurisSuite_icon_white.svg" alt="JurisSuite Icon" className="h-10 w-10" />
+          <span className="font-bold text-2xl">JurisSuite</span>
+        </a>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 flex gap-8 text-lg items-center">
-        <a href="/" className="hover:text-gray-400 transition">
-          Home
-        </a>
-
-        <div className="relative group">
-          <a href="/tools" className="hover:text-gray-400 transition block py-2"
-          >
-            Tools
-          </a>
-
-          <div className="absolute left-1/2 top-full -translate-x-1/2 hidden min-w-[220px] rounded-md bg-white py-2 text-black shadow-lg group-hover:block">
-            <a href="/tools/brief-generator" className="block px-4 py-2 hover:bg-gray-100">
-              Brief Generator
-            </a>
-            <a href="/tools/case-analyzer" className="block px-4 py-2 hover:bg-gray-100">
-              Case Analyzer
-            </a>
+      <div className="nav-links">
+        <a href="/" className="nav-item">Home</a>
+        <div className="nav-item dropdown">
+          <a href="/tools" className="dropdown-trigger">Tools</a>
+          <div className="dropdown-menu">
+            <a href="/tools/brief-generator" className="dropdown-link">Brief Generator</a>
+            <a href="/tools/case-analyzer" className="dropdown-link">Case Analyzer</a>
           </div>
         </div>
-
-        <a href="/pricing" className="hover:text-gray-400 transition">
-          Pricing
-        </a>
-        <a href="/about" className="hover:text-gray-400 transition">
-          About Us
-        </a>
-        <a href="/contact" className="hover:text-gray-400 transition">
-          Contact
-        </a>
+        <a href="/pricing" className="nav-item">Pricing</a>
+        <a href="/about" className="nav-item">About Us</a>
+        <a href="/contact" className="nav-item">Contact</a>
       </div>
 
-      <div className="absolute right-6 hidden">
-        <button className="bg-white text-lg text-black px-3 py-1 rounded hover:bg-gray-300 transition">
-          Sign In
-        </button>
-      </div>
-
+      <button
+        className="nav-button"
+        onClick={() => window.location.href = "/waitlist"}
+      >
+        Join Waitlist
+      </button>
     </nav>
-  );
+  )
 }
