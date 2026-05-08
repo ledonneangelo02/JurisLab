@@ -67,18 +67,23 @@
     0 1.25rem,
     0 0;
 
-  --button-primary-bg: #14213d;
-  --button-primary-hover-bg: #1e3a5f;
-  --button-primary-text: #fff8e7;
-  --button-primary-border: rgba(255, 248, 231, 0.36);
-  --button-primary-shadow: rgba(20, 33, 61, 0.28);
+  --button-primary-bg: #fffdf7;
+  --button-primary-hover-bg: #fffdf7;
+  --button-primary-text: #14213d;
+  --button-primary-border: rgba(20, 33, 61, 0.22);
+  --button-primary-shadow: rgba(20, 33, 61, 0.14);
 
-  --button-secondary-bg: #365f5c;
-  --button-secondary-hover-bg: #457773;
-  --button-secondary-text: #fff8e7;
-  --button-secondary-border: rgba(255, 248, 231, 0.28);
-  --button-secondary-shadow: rgba(54, 95, 92, 0.24);
-  --button-focus-ring: rgba(30, 58, 95, 0.32);
+  --button-secondary-bg: #fbfef8;
+  --button-secondary-hover-bg: #fbfef8;
+  --button-secondary-text: #14213d;
+  --button-secondary-border: rgba(20, 33, 61, 0.18);
+  --button-secondary-shadow: rgba(54, 95, 92, 0.13);
+  --button-highlight: rgba(255, 236, 89, 0.7);
+  --button-highlight-secondary: rgba(130, 224, 186, 0.58);
+  --button-highlight-nav: rgba(151, 211, 255, 0.62);
+  --button-highlight-submit: rgba(255, 189, 218, 0.62);
+  --button-highlight-pricing: rgba(205, 184, 255, 0.56);
+  --button-focus-ring: rgba(248, 214, 78, 0.42);
 }
 
 html, body, #root {
