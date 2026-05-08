@@ -227,6 +227,9 @@
 .pricing-card-button {
   position: relative;
   z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  --button-hover-highlight: var(--button-highlight-pricing);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -243,16 +246,35 @@
   font-weight: 800;
   text-decoration: none;
   box-shadow: 0 10px 20px var(--button-primary-shadow);
-  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.pricing-card-button::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 1rem;
+  right: 1rem;
+  top: 50%;
+  height: 0.82em;
+  border-radius: 0.18rem;
+  background: var(--button-hover-highlight);
+  pointer-events: none;
+  transform: translateY(-42%) scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms ease;
 }
 
 .pricing-card-button:hover {
-  background: var(--button-primary-hover-bg);
   box-shadow: 0 14px 26px var(--button-primary-shadow);
-  transform: translateY(-1px);
+}
+
+.pricing-card-button:hover::before {
+  transform: translateY(-42%) scaleX(1);
 }
 
 .pricing-card-button-secondary {
+  --button-hover-highlight: var(--button-highlight-secondary);
   border-color: var(--button-secondary-border);
   background: var(--button-secondary-bg);
   color: var(--button-secondary-text);
@@ -260,7 +282,6 @@
 }
 
 .pricing-card-button-secondary:hover {
-  background: var(--button-secondary-hover-bg);
   box-shadow: 0 14px 26px var(--button-secondary-shadow);
 }
 

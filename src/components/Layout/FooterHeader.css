@@ -98,6 +98,10 @@
 }
 
 .nav-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --button-hover-highlight: var(--button-highlight-nav);
   margin-left: auto;
   padding: 0.92rem 1.5rem;
   border-radius: 999px;
@@ -107,13 +111,31 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 12px 24px var(--button-primary-shadow);
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  transition: box-shadow 160ms ease, background 160ms ease;
+}
+
+.nav-button::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0.9rem;
+  right: 0.9rem;
+  top: 50%;
+  height: 0.8em;
+  border-radius: 0.18rem;
+  background: var(--button-hover-highlight);
+  pointer-events: none;
+  transform: translateY(-42%) scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms ease;
 }
 
 .nav-button:hover {
-  background: var(--button-primary-hover-bg);
-  transform: translateY(-1px);
   box-shadow: 0 16px 30px var(--button-primary-shadow);
+}
+
+.nav-button:hover::before {
+  transform: translateY(-42%) scaleX(1);
 }
 
 .page-footer {
