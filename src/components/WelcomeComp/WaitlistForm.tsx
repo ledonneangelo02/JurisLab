@@ -30,7 +30,7 @@ export default function WaitlistForm() {
           },
           body: JSON.stringify({ 
             email: WaitlistEmail,
-            FirstName: FirstName,
+            firstName: FirstName,
             acceptedTerms: AcceptedTerms,
           }),
         });
