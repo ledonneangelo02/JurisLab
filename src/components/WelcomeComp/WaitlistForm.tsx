@@ -39,6 +39,11 @@ export default function WaitlistForm() {
 
         if (!response.ok) {
           throw new Error(data.error || "Failed to join the waitlist. Please try again.");
+        }else{
+          setWaitlistEmail("");
+          setFirstName("");
+          setAcceptedTerms(false);
+          alert("Successfully joined the waitlist! We'll keep you updated.");
         }
       }
     } catch (err) {
