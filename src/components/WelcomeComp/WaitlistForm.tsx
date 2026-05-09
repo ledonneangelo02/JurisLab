@@ -10,8 +10,7 @@ export default function WaitlistForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_BASE_URL = (import.meta as any).env.VITE_SITE_API;
-
+  const API_BASE_URL = import.meta.env.API_BASE_URL;  
   
   const joinWaitlist = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
