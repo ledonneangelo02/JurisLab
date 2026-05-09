@@ -5,11 +5,11 @@ import "./WelcomeComp.css"
 export default function WaitlistForm() {
   
   const [WaitlistEmail, setWaitlistEmail] = useState("")
+  const [FirstName, setFirstName] = useState("")
   const [AcceptedTerms, setAcceptedTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  //const API_BASE_URL = (import.meta as any).env.VITE_API_BASE_URL;
   const API_BASE_URL = (import.meta as any).env.VITE_SITE_API;
 
   
@@ -30,16 +30,16 @@ export default function WaitlistForm() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ 
-    
             email: WaitlistEmail,
-
+            FirstName: FirstName,
+            acceptedTerms: AcceptedTerms,
           }),
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || `Server error: ${response.status}`);
+          throw new Error(data.error || "Failed to join the waitlist. Please try again.");
         }
       }
     } catch (err) {
@@ -70,6 +70,8 @@ export default function WaitlistForm() {
           type="text"
           placeholder="Enter your first name"
           className="w-full p-3 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+          value={FirstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
 
         <input
@@ -80,7 +82,11 @@ export default function WaitlistForm() {
           onChange={(e) => setWaitlistEmail(e.target.value)}
         />
       </div>
-
+      {error && (
+        <p className="text-sm text-red-600 text-center">
+          {error}
+        </p>
+      )}
       <button
         style={{ fontFamily: "Michaela-Grace" }}
         className="waitlist-submit-button text-3xl py-2 px-10 rounded-md focus:outline-none disabled:opacity-60"
@@ -102,15 +108,10 @@ export default function WaitlistForm() {
         />
 
         <label htmlFor="AcceptTerms" className="text-xs text-gray-700 leading-relaxed">
-          I consent to receive consulting services by email for information about the material and services offered by JurisLab. I understand that I can unsubscribe at any time.
+          I consent to receive consulting services by email for information about the material and services offered by JurisSuite. I understand that I can unsubscribe at any time.
         </label>
       </div>
 
-      {error && (
-        <p className="text-sm text-red-600 text-center">
-          {error}
-        </p>
-      )}
     </form>
   </div>
   )
