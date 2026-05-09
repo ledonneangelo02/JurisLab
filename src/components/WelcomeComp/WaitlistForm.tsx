@@ -63,9 +63,9 @@ export default function WaitlistForm() {
 
       {success ? (
         <div className="flex flex-col items-center text-center gap-4 py-10">
-          <h2 className="text-3xl font-bold">You’re on the waitlist!</h2>
+          <h2 className="text-3xl font-bold">You’ve been added to the waitlist!</h2>
           <p className="text-gray-600 max-w-xl">
-            Thanks, {FirstName || "there"} — we received your signup and will email you with updates about JurisSuite.
+            Thanks, {FirstName || "there"}! We received your submission and will email you with updates about JurisSuite.
           </p>
         </div>
       ) : (

@@ -46,7 +46,7 @@ export default function WelcomeComp() {
           </p>
 
           <div className="hero-actions">
-            <a href="/pricing" className="primary-cta">View Plans</a>
+            
           </div>
         </div>
 
