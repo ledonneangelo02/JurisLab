@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import notepadMagnifyingImage from "../../assets/images/Notepad_and_magnifying.png"
 import notepadPenImage from "../../assets/images/Notepad_and_Pen.png"
-import scalesImage from "../../assets/images/scales.png"
+import scalesImage from "../../assets/images/Scales_of_Justice.png"
 import "./WelcomeComp.css"
 import WaitlistForm from "./WaitlistForm"
 
@@ -65,12 +65,6 @@ export default function WelcomeComp() {
 
       <hr className="divider" />
 
-      <div id="waitlist" className="waitlist-form container">
-        <WaitlistForm />
-      </div>
-
-      <hr className="divider" />
-
       <div className="feature-panel">
         {toolCards.map((tool) => (
           <article className="feature-card" key={tool.title}>
@@ -86,6 +80,10 @@ export default function WelcomeComp() {
       </div>
 
       <hr className="divider" />
+    
+      <div id="waitlist" className="waitlist-form container">
+        <WaitlistForm />
+      </div>
     </section>
   )
 }

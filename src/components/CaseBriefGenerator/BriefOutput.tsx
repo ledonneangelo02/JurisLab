@@ -17,22 +17,22 @@ export default function BriefOutput({
   const hasBrief = Boolean(brief);
 
   return (
-    <section className="xl:col-span-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <section className="brief-sticky-panel brief-output-panel">
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-xl font-semibold">Generated Case Brief</h2>
-          <p className="mt-1 text-sm text-slate-500">
+          <h2 className="brief-panel-title">Generated Case Brief</h2>
+          <p className="brief-panel-copy mt-1">
             Your returned brief data will appear below.
           </p>
         </div>
       </div>
 
       {hasBrief ? (
-        <pre className="overflow-x-auto rounded-2xl bg-slate-50 p-4 text-sm text-slate-800">
+        <pre className="brief-output-content">
           {brief?.content}
         </pre>
       ) : (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-sm text-slate-500">
+        <div className="brief-empty-state">
           {loading
             ? "Your brief is being generated..."
             : "No brief generated yet. Paste a case and click Generate Brief."}
@@ -44,14 +44,14 @@ export default function BriefOutput({
           type="button"
           onClick={onCopy}
           disabled={!hasBrief}
-          className="brief-button-secondary rounded-2xl px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
+          className="brief-button-secondary disabled:cursor-not-allowed disabled:opacity-50"
         >
           {copied ? "Copied!" : "Copy Brief"}
         </button>
 
         <button
           type="button"
-          className="brief-button-secondary rounded-2xl px-4 py-2 text-sm font-medium"
+          className="brief-button-secondary"
         >
           Export PDF
         </button>

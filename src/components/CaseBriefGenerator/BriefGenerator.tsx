@@ -1,5 +1,4 @@
-import { useState, type FormEvent } from "react";
-import BriefOutput from "./BriefOutput";
+import { useState } from "react";
 import type { Brief } from "./BriefTypes";
 import "./BriefGenerator.css";
 
@@ -12,12 +11,13 @@ export default function BriefGenerator() {
 
   const API_BASE_URL = (import.meta as any).env.VITE_API_BASE_URL;
 
-
   const handleCopy = async () => {
     if (!brief) return;
 
     try {
-      await navigator.clipboard.writeText(JSON.stringify(brief, null, 2));
+      await navigator.clipboard.writeText(
+        brief.content ?? JSON.stringify(brief, null, 2),
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -28,9 +28,16 @@ export default function BriefGenerator() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const submittedText = text.trim();
+    if (!submittedText) return;
+
     setLoading(true);
     setError("");
     setBrief(null);
+    setCopied(false);
+
+    // clears the sticky note immediately
+    setText("");
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/brief`, {
@@ -38,10 +45,9 @@ export default function BriefGenerator() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text: submittedText }),
       });
 
-      // ✅ safer typing instead of implicit any
       const data: unknown = await response.json();
 
       if (!response.ok) {
@@ -49,14 +55,14 @@ export default function BriefGenerator() {
           typeof data === "object" &&
           data !== null &&
           "error" in data &&
-          typeof (data as any).error === "string"
-            ? (data as any).error
+          typeof (data as { error?: unknown }).error === "string"
+            ? (data as { error: string }).error
             : `Server error: ${response.status}`;
 
         throw new Error(errorMessage);
       }
 
-      setBrief(data as Brief); // cast to your type
+      setBrief(data as Brief);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -65,82 +71,125 @@ export default function BriefGenerator() {
   };
 
   return (
-    <div className="min-h-screen text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap gap-3"></div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-          <main className="space-y-6 xl:col-span-6">
+    <div className="brief-generator-page text-slate-900">
+      <div className="brief-generator-shell">
+        <div className="brief-generator-grid brief-generator-grid-solo">
+          <main className="brief-generator-main">
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+              className="brief-sticky-panel brief-input-panel"
             >
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h2 className="text-xl font-semibold">Input Case Text</h2>
-                  <p className="mt-1 text-sm text-slate-500">
-                    Paste the case text you want converted into a structured brief.
+              {loading ? (
+                <div className="brief-loading-state">
+                  <span
+                    className="brief-loading-spinner"
+                    aria-hidden="true"
+                  />
+                  <p className="brief-panel-title">Generating Brief...</p>
+                  <p className="brief-panel-copy">
+                    Your case text is being converted into a structured brief.
                   </p>
                 </div>
+              ) : brief ? (
+                <>
+                  <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <h2 className="brief-panel-title">
+                        Generated Case Brief
+                      </h2>
+                      <p className="brief-panel-copy mt-1">
+                        Your generated case brief is ready.
+                      </p>
+                    </div>
+                  </div>
 
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                  {text.length.toLocaleString()} chars
-                </span>
-              </div>
+                  <pre className="brief-output-content">{brief.content}</pre>
 
-              <label className="mt-5 block text-sm font-semibold text-slate-700">
-                Enter case text:
-              </label>
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <button
+                      type="button"
+                      className="brief-button-secondary"
+                      onClick={() => {
+                        setText("");
+                        setBrief(null);
+                        setError("");
+                        setCopied(false);
+                      }}
+                    >
+                      Start Over
+                    </button>
 
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                className="mt-2 min-h-[260px] w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-slate-500"
-                placeholder="Paste the case text here..."
-              />
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <button
+                        type="button"
+                        onClick={handleCopy}
+                        className="brief-button-secondary"
+                      >
+                        {copied ? "Copied!" : "Copy Brief"}
+                      </button>
 
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    className="brief-button-secondary rounded-xl px-3 py-2 text-sm font-medium"
-                    onClick={() => {
-                      setText("");
-                      setBrief(null);
-                      setError("");
-                    }}
-                  >
-                    Clear Text
-                  </button>
-                </div>
+                      <button type="button" className="brief-button-secondary">
+                        Export PDF
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <h2 className="brief-panel-title">Input Case Text</h2>
+                      <p className="brief-panel-copy mt-1">
+                        Paste the case text you want converted into a structured
+                        brief.
+                      </p>
+                    </div>
 
-                <button
-                  type="submit"
-                  disabled={loading || !text.trim()}
-                  className="brief-button-primary inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {loading && (
-                    <span
-                      className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span>{loading ? "Generating..." : "Generate Brief"}</span>
-                </button>
-              </div>
+                    <span className="brief-char-count">
+                      {text.length.toLocaleString()} chars
+                    </span>
+                  </div>
 
-              {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+                  <label className="brief-label mt-5 block">
+                    Enter case text:
+                  </label>
+
+                  <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    className="brief-textarea mt-2"
+                    placeholder="Paste the case text here..."
+                  />
+
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        className="brief-button-secondary"
+                        onClick={() => {
+                          setText("");
+                          setBrief(null);
+                          setError("");
+                        }}
+                      >
+                        Clear Text
+                      </button>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={!text.trim()}
+                      className="brief-button-primary inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      Generate Brief
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {error && <p className="brief-error mt-4">{error}</p>}
             </form>
           </main>
-
-          <BriefOutput
-            brief={brief}
-            loading={loading}
-            copied={copied}
-            onCopy={handleCopy}
-          />
         </div>
       </div>
     </div>
