@@ -23,17 +23,17 @@ export default function Navbar() {
       </div>
 
       <div className="nav-links">
-        <a href="/" className="nav-item hidden">Home</a>
-        <div className="nav-item dropdown hidden">
+        <a href="/" className="nav-item ">Home</a>
+        <div className="nav-item dropdown ">
           <a href="/tools" className="dropdown-trigger">Tools</a>
           <div className="dropdown-menu">
             <a href="/tools/brief-generator" className="dropdown-link">Brief Generator</a>
             <a href="/tools/case-analyzer" className="dropdown-link">Case Analyzer</a>
           </div>
         </div>
-        <a href="/pricing" className="nav-item hidden">Pricing</a>
-        <a href="/about" className="nav-item hidden">About Us</a>
-        <a href="/contact" className="nav-item hidden">Contact</a>
+        <a href="/pricing" className="nav-item ">Pricing</a>
+        <a href="/about" className="nav-item ">About Us</a>
+        <a href="/contact" className="nav-item ">Contact</a>
       </div>
 
       <button
