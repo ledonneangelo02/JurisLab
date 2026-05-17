@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import PricingCard from '../components/PricingCard/PricingCard.js'
 import '../components/PricingCard/PricingCard.css'
+
 
 const plans = [
   {
@@ -47,19 +49,51 @@ const plans = [
   },
 ]
 
-const comparisonRows = [
-  ['Document analysis credits', '10/month', '100/month', '500/month'],
-  ['Brief Generator', 'Yes', 'Yes', 'Yes'],
-  ['Case Analyzer', 'Limited', 'Yes', 'Yes'],
-  ['Flash cards and outlines', 'No', 'Yes', 'Yes'],
-  ['Support', 'Community', 'Email', 'Priority email'],
-]
-
 export default function Pricing() {
+  const [activePlanIndex, setActivePlanIndex] = useState(1)
+  const [isFlipping, setIsFlipping] = useState(false)
+  const [flipDirection, setFlipDirection] = useState<'next' | 'previous'>('next')
+  const activePlan = plans[activePlanIndex]
+  if (!activePlan) {
+    return null
+  }
+  const showPlan = (nextIndex: number, direction: 'next' | 'previous') => {
+    if (isFlipping || nextIndex === activePlanIndex) return
+
+    setFlipDirection(direction)
+    setIsFlipping(true)
+
+    window.setTimeout(() => {
+      setActivePlanIndex(nextIndex)
+    }, 180)
+
+    window.setTimeout(() => {
+      setIsFlipping(false)
+    }, 520)
+  }
+
+  const getPreviousIndex = () => {
+    return activePlanIndex === 0 ? plans.length - 1 : activePlanIndex - 1
+  }
+
+  const getNextIndex = () => {
+    return activePlanIndex === plans.length - 1 ? 0 : activePlanIndex + 1
+  }
+
+  const showPreviousPlan = () => {
+    showPlan(getPreviousIndex(), 'previous')
+  }
+
+  const showNextPlan = () => {
+    showPlan(getNextIndex(), 'next')
+  }
+
   return (
     <section className="pricing-page">
       <div className="pricing-shell">
         <header className="pricing-hero">
+          <span className="pricing-hero-tape pricing-hero-tape-left" aria-hidden="true" />
+          <span className="pricing-hero-tape pricing-hero-tape-right" aria-hidden="true" />
           <p className="pricing-eyebrow">Simple plans for law school work</p>
           <h1>Choose the JurisSuite plan that fits your study load.</h1>
           <p>
@@ -74,41 +108,57 @@ export default function Pricing() {
           </div>
         </header>
 
-        <div className="pricing-grid" aria-label="Pricing plans">
-          {plans.map((plan) => (
-            <PricingCard key={plan.title} {...plan} />
-          ))}
+        <div className="pricing-book-stage" aria-label="Pricing plans">
+          <button
+            type="button"
+            className="pricing-book-arrow pricing-book-arrow-left"
+            onClick={showPreviousPlan}
+            disabled={isFlipping}
+            aria-label="View previous plan"
+          >
+            <span aria-hidden="true" />
+          </button>
+
+          <PricingCard
+            {...activePlan}
+            planNumber={activePlanIndex + 1}
+            planCount={plans.length}
+            isFlipping={isFlipping}
+            flipDirection={flipDirection}
+          />
+
+          <button
+            type="button"
+            className="pricing-book-arrow pricing-book-arrow-right"
+            onClick={showNextPlan}
+            disabled={isFlipping}
+            aria-label="View next plan"
+          >
+            <span aria-hidden="true" />
+          </button>
         </div>
 
-        <section className="pricing-comparison" aria-labelledby="pricing-comparison-title">
-          <div className="pricing-section-header">
-            <p className="pricing-eyebrow">Compare plans</p>
-            <h2 id="pricing-comparison-title">What each plan includes</h2>
-          </div>
-
-          <div className="pricing-table-scroll">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th scope="col">Feature</th>
-                  <th scope="col">Free</th>
-                  <th scope="col">Basic</th>
-                  <th scope="col">Pro</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map(([feature, free, basic, pro]) => (
-                  <tr key={feature}>
-                    <th scope="row">{feature}</th>
-                    <td>{free}</td>
-                    <td>{basic}</td>
-                    <td>{pro}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <div className="pricing-plan-tabs" aria-label="Choose a plan">
+          {plans.map((plan) => (
+            <button
+              key={plan.title}
+              type="button"
+              className={`pricing-plan-tab ${
+                plan.title === activePlan.title ? 'pricing-plan-tab-active' : ''
+              }`}
+              onClick={() =>
+                showPlan(
+                  plans.indexOf(plan),
+                  plans.indexOf(plan) > activePlanIndex ? 'next' : 'previous',
+                )
+              }
+              disabled={isFlipping}
+            >
+              <span>{plan.title}</span>
+              <strong>{plan.price}</strong>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   )
