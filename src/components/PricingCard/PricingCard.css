@@ -11,9 +11,85 @@
 }
 
 .pricing-hero {
+  position: relative;
   max-width: 860px;
   margin: 0 auto;
+  padding: 3.35rem 2.25rem 2.4rem;
+  overflow: visible;
   text-align: center;
+  background:
+    linear-gradient(
+      to right,
+      transparent 72px,
+      rgba(164, 44, 44, 0.22) 72px,
+      rgba(164, 44, 44, 0.22) 74px,
+      transparent 74px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(44, 87, 150, 0.12) 32px
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 253, 247, 0.96)),
+    #fffdf7;
+  border: 1px solid rgba(20, 33, 61, 0.16);
+  border-radius: 8px;
+  box-shadow:
+    0 28px 58px rgba(36, 28, 12, 0.14),
+    0 5px 14px rgba(36, 28, 12, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  transform: rotate(-0.25deg);
+}
+
+.pricing-hero::before {
+  content: "";
+  position: absolute;
+  right: 1.4rem;
+  bottom: -1.1rem;
+  width: 9.5rem;
+  height: 3.35rem;
+  border: 1px solid rgba(150, 37, 37, 0.26);
+  border-radius: 3px;
+  background: rgba(255, 248, 248, 0.68);
+  box-shadow: inset 0 0 0 2px rgba(150, 37, 37, 0.08);
+  transform: rotate(-4deg);
+}
+
+.pricing-hero::after {
+  content: "PRICING FILE";
+  position: absolute;
+  right: 2.1rem;
+  bottom: -0.02rem;
+  color: rgba(150, 37, 37, 0.7);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  transform: rotate(-4deg);
+}
+
+.pricing-hero-tape {
+  position: absolute;
+  top: -0.85rem;
+  z-index: 2;
+  width: 8rem;
+  height: 1.6rem;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 32%, rgba(255, 255, 255, 0.2)),
+    rgba(255, 252, 223, 0.72);
+  box-shadow: 0 4px 12px rgba(36, 28, 12, 0.12);
+}
+
+.pricing-hero-tape-left {
+  left: 14%;
+  transform: rotate(-3deg);
+}
+
+.pricing-hero-tape-right {
+  right: 14%;
+  transform: rotate(2.4deg);
 }
 
 .pricing-eyebrow {
@@ -27,15 +103,16 @@
 }
 
 .pricing-hero h1 {
-  margin: 0;
+  max-width: 760px;
+  margin: 0 auto;
   color: #14213d;
-  font-size: clamp(2.2rem, 5vw, 4.15rem);
+  font-size: clamp(2.15rem, 4.8vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.02;
+  line-height: 1.04;
 }
 
 .pricing-hero p:not(.pricing-eyebrow) {
-  max-width: 720px;
+  max-width: 700px;
   margin: 1.25rem auto 0;
   color: #344057;
   font-size: 1.08rem;
@@ -47,81 +124,257 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.75rem;
+  margin-top: 1.8rem;
 }
 
 .pricing-hero-points span {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 2.35rem;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid rgba(20, 33, 61, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 253, 247, 0.72);
+  padding: 0.45rem 0.85rem 0.45rem 1.65rem;
+  border: 1px solid rgba(54, 95, 92, 0.2);
+  border-radius: 6px;
+  background: rgba(251, 254, 248, 0.78);
   color: #1f2f4f;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.9rem;
-  font-weight: 700;
-  box-shadow: 0 8px 18px rgba(20, 33, 61, 0.06);
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-  align-items: stretch;
-  margin-top: 3.5rem;
-}
-
-.pricing-card {
-  position: relative;
-  display: flex;
-  min-height: 520px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.45rem;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 253, 247, 0.94)),
-    #fffdf7;
-  border: 1px solid rgba(20, 33, 61, 0.14);
-  border-radius: 8px;
+  font-weight: 750;
   box-shadow:
-    0 18px 42px rgba(20, 33, 61, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    0 8px 18px rgba(20, 33, 61, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.pricing-card::before {
+.pricing-hero-points span::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 5px;
-  background: var(--button-secondary-bg);
+  left: 0.7rem;
+  width: 0.48rem;
+  height: 0.48rem;
+  border: 1px solid rgba(20, 33, 61, 0.28);
+  border-radius: 999px;
+  background: #fffdf7;
+  box-shadow: inset 0 1px 2px rgba(20, 33, 61, 0.12);
 }
 
-.pricing-card:hover {
-  border-color: rgba(20, 33, 61, 0.26);
+.pricing-book-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) 3.25rem;
+  gap: 1rem;
+  align-items: center;
+  margin: 4.25rem auto 0;
+}
+
+.pricing-book {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 470px;
+  padding: 0.9rem;
+  border-radius: 18px 20px 20px 18px;
+  background:
+    linear-gradient(90deg, #2a2630 0, #423845 4%, #715f52 50%, #423845 96%, #2a2630 100%);
+  filter: drop-shadow(0 34px 46px rgba(36, 28, 12, 0.24));
+  isolation: isolate;
+  perspective: 1800px;
+}
+
+.pricing-book::before {
+  content: "";
+  position: absolute;
+  inset: 1.1rem 1.1rem -0.55rem;
+  z-index: -2;
+  border-radius: 10px 14px 16px 10px;
+  background:
+    repeating-linear-gradient(to bottom, #efe6cd 0 3px, #d8c9a9 3px 4px);
+  box-shadow: 0 12px 18px rgba(36, 28, 12, 0.12);
+}
+
+.pricing-book::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12), transparent 14%, transparent 86%, rgba(255, 255, 255, 0.1)),
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.16), transparent 38%);
+  pointer-events: none;
+}
+
+.pricing-book-cover {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, #332a32, #55413e 12%, #846b54 50%, #55413e 88%, #332a32);
   box-shadow:
-    0 24px 52px rgba(20, 33, 61, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.74);
-  transform: translateY(-4px);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 0 0 7px rgba(20, 33, 61, 0.08);
 }
 
-.pricing-card-featured {
-  border-color: rgba(20, 33, 61, 0.38);
+.pricing-book-page {
+  position: relative;
+  display: flex;
+  min-height: 470px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 2.4rem;
+  background:
+    radial-gradient(circle at 0 50%, rgba(36, 28, 12, 0.1), transparent 1.3rem),
+    linear-gradient(90deg, rgba(36, 28, 12, 0.1), transparent 12%),
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(44, 87, 150, 0.055) 32px),
+    linear-gradient(180deg, #fffaf0, #fffdf7 52%, #f7eedb);
+  border: 1px solid rgba(83, 66, 44, 0.22);
   box-shadow:
-    0 24px 56px var(--button-primary-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    inset 0 -22px 34px rgba(36, 28, 12, 0.06);
+  backface-visibility: hidden;
 }
 
-.pricing-card-featured::before {
-  background: var(--button-primary-bg);
+.pricing-book-page-left {
+  border-radius: 10px 4px 4px 10px;
+  border-right: 0;
+  background:
+    linear-gradient(
+      to right,
+      transparent 64px,
+      rgba(164, 44, 44, 0.12) 64px,
+      rgba(164, 44, 44, 0.12) 66px,
+      transparent 66px
+    ),
+    radial-gradient(circle at 100% 50%, rgba(36, 28, 12, 0.14), transparent 1.4rem),
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(44, 87, 150, 0.055) 32px),
+    linear-gradient(180deg, #fffaf0, #fffdf7 52%, #f7eedb);
+  transform: rotateY(3deg);
+  transform-origin: right center;
 }
 
-.pricing-card-content {
+.pricing-book-page-right {
+  border-left: 0;
+  border-radius: 4px 10px 10px 4px;
+  transform: rotateY(-3deg);
+  transform-origin: left center;
+}
+
+.pricing-book-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(36, 28, 12, 0.06), transparent 9%, transparent 91%, rgba(36, 28, 12, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 44%);
+  mix-blend-mode: multiply;
+}
+
+.pricing-book-spine {
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: calc(50% - 0.55rem);
+  z-index: 4;
+  width: 1.1rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(36, 28, 12, 0.38), rgba(255, 248, 226, 0.48), rgba(36, 28, 12, 0.32));
+  box-shadow:
+    -0.55rem 0 1.3rem rgba(36, 28, 12, 0.18),
+    0.55rem 0 1.3rem rgba(36, 28, 12, 0.18);
+}
+
+.pricing-book-turn-page {
+  position: absolute;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 3;
+  width: calc(50% - 0.9rem);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(44, 87, 150, 0.055) 32px),
+    linear-gradient(180deg, #fffaf0, #fffdf7 52%, #f7eedb);
+  border: 1px solid rgba(83, 66, 44, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.pricing-book-flipping-next .pricing-book-turn-page {
+  right: 0.9rem;
+  border-radius: 4px 10px 10px 4px;
+  transform-origin: left center;
+  animation: pricing-page-turn-next 520ms ease-in-out both;
+}
+
+.pricing-book-flipping-previous .pricing-book-turn-page {
+  left: 0.9rem;
+  border-radius: 10px 4px 4px 10px;
+  transform-origin: right center;
+  animation: pricing-page-turn-previous 520ms ease-in-out both;
+}
+
+@keyframes pricing-page-turn-next {
+  0% {
+    opacity: 0;
+    transform: rotateY(0deg);
+    box-shadow: -0.2rem 0 0.8rem rgba(36, 28, 12, 0.06);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  50% {
+    box-shadow: -1.2rem 0 1.8rem rgba(36, 28, 12, 0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateY(-178deg);
+    box-shadow: -0.2rem 0 0.8rem rgba(36, 28, 12, 0.04);
+  }
+}
+
+@keyframes pricing-page-turn-previous {
+  0% {
+    opacity: 0;
+    transform: rotateY(0deg);
+    box-shadow: 0.2rem 0 0.8rem rgba(36, 28, 12, 0.06);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  50% {
+    box-shadow: 1.2rem 0 1.8rem rgba(36, 28, 12, 0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateY(178deg);
+    box-shadow: 0.2rem 0 0.8rem rgba(36, 28, 12, 0.04);
+  }
+}
+
+.pricing-book-page-content,
+.pricing-book-page > div,
+.pricing-book-page > a,
+.pricing-book-note {
   position: relative;
   z-index: 1;
+}
+
+.pricing-book-kicker {
+  margin: 0 0 1rem;
+  color: #365f5c;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .pricing-card-header {
@@ -135,9 +388,9 @@
 .pricing-card-plan {
   margin: 0;
   color: #14213d;
-  font-size: 1.45rem;
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 0.96;
 }
 
 .pricing-card-badge {
@@ -146,25 +399,27 @@
   justify-content: center;
   min-height: 1.8rem;
   padding: 0.35rem 0.65rem;
-  border-radius: 999px;
-  background: var(--button-primary-bg);
-  color: var(--button-primary-text);
+  border: 1px solid rgba(54, 95, 92, 0.24);
+  border-radius: 4px;
+  background: rgba(251, 254, 248, 0.88);
+  color: #365f5c;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  box-shadow: 0 8px 18px var(--button-primary-shadow);
+  box-shadow: 0 8px 18px rgba(54, 95, 92, 0.1);
+  transform: rotate(1deg);
 }
 
 .pricing-card-price {
   display: flex;
   align-items: baseline;
-  gap: 0.25rem;
-  margin-top: 1.3rem;
+  gap: 0.35rem;
+  margin-top: 2rem;
   color: #0f172a;
-  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1;
 }
@@ -176,24 +431,25 @@
 }
 
 .pricing-card-description {
-  min-height: 5.25rem;
-  margin: 1.1rem 0 0;
+  max-width: 32rem;
+  margin: 1.25rem 0 0;
   color: #3f4b63;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
-.pricing-card-divider {
-  height: 1px;
-  margin: 1.4rem 0;
-  border: 0;
-  background: linear-gradient(90deg, rgba(20, 33, 61, 0.04), rgba(20, 33, 61, 0.22), rgba(20, 33, 61, 0.04));
+.pricing-book-feature-title {
+  margin: 0 0 1.25rem;
+  color: #14213d;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.08;
 }
 
 .pricing-card-features {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.95rem;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -201,27 +457,44 @@
 
 .pricing-card-features li {
   position: relative;
-  padding-left: 1.4rem;
+  padding-left: 1.65rem;
   color: #1f2937;
-  font-size: 0.98rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
 .pricing-card-features li::before {
   content: "";
   position: absolute;
-  top: 0.55rem;
+  top: 0.3rem;
   left: 0;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: var(--button-secondary-bg);
-  box-shadow: 0 0 0 4px rgba(54, 95, 92, 0.1);
+  width: 0.82rem;
+  height: 0.82rem;
+  border: 1px solid rgba(20, 33, 61, 0.24);
+  border-radius: 2px;
+  background: rgba(255, 253, 247, 0.76);
+  box-shadow: inset 0 1px 2px rgba(20, 33, 61, 0.08);
 }
 
-.pricing-card-featured .pricing-card-features li::before {
-  background: var(--button-primary-bg);
-  box-shadow: 0 0 0 4px rgba(20, 33, 61, 0.1);
+.pricing-card-features li::after {
+  content: "";
+  position: absolute;
+  top: 0.46rem;
+  left: 0.23rem;
+  width: 0.34rem;
+  height: 0.18rem;
+  border-left: 2px solid #365f5c;
+  border-bottom: 2px solid #365f5c;
+  transform: rotate(-45deg);
+}
+
+.pricing-book-note {
+  margin: 2rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(20, 33, 61, 0.14);
+  color: #5c6680;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 .pricing-card-button {
@@ -233,17 +506,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: min(100%, 17rem);
   min-height: 3rem;
   margin-top: 1.8rem;
   padding: 0.85rem 1rem;
   border: 1px solid var(--button-primary-border);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.98rem;
-  font-weight: 800;
+  font-family: "Michaela-Grace", "Century-Schoolbook", serif;
+  font-size: 1.55rem;
+  line-height: 1;
+  font-weight: 400;
   text-decoration: none;
   box-shadow: 0 10px 20px var(--button-primary-shadow);
   transition: background 180ms ease, box-shadow 180ms ease;
@@ -285,71 +559,106 @@
   box-shadow: 0 14px 26px var(--button-secondary-shadow);
 }
 
-.pricing-card-button:focus-visible {
+.pricing-card-button:focus-visible,
+.pricing-book-arrow:focus-visible,
+.pricing-plan-tab:focus-visible {
   outline: 3px solid var(--button-focus-ring);
   outline-offset: 3px;
 }
 
-.pricing-comparison {
-  margin-top: 4rem;
+.pricing-book-arrow {
+  position: relative;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid rgba(20, 33, 61, 0.18);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.92), transparent 0.55rem),
+    linear-gradient(145deg, #fffdf7, #dfe6df);
+  box-shadow:
+    0 12px 22px rgba(20, 33, 61, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.pricing-section-header {
-  max-width: 720px;
-  margin-bottom: 1.2rem;
+.pricing-book-arrow:hover {
+  box-shadow:
+    0 16px 28px rgba(20, 33, 61, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  transform: translateY(-2px);
 }
 
-.pricing-section-header h2 {
-  margin: 0;
-  color: #14213d;
-  font-size: clamp(1.6rem, 3vw, 2.35rem);
-  font-weight: 800;
+.pricing-book-arrow span {
+  width: 0.95rem;
+  height: 0.95rem;
+  border-top: 3px solid #14213d;
+  border-left: 3px solid #14213d;
 }
 
-.pricing-table-scroll {
-  overflow-x: auto;
+.pricing-book-arrow-left span {
+  transform: translateX(0.15rem) rotate(-45deg);
+}
+
+.pricing-book-arrow-right span {
+  transform: translateX(-0.15rem) rotate(135deg);
+}
+
+.pricing-plan-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: min(100%, 760px);
+  margin: 2rem auto 0;
+}
+
+.pricing-plan-tab {
+  position: relative;
+  display: flex;
+  min-height: 4.35rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
   border: 1px solid rgba(20, 33, 61, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 253, 247, 0.9);
-  box-shadow: 0 18px 42px rgba(20, 33, 61, 0.09);
-}
-
-.pricing-table {
-  width: 100%;
-  min-width: 680px;
-  border-collapse: collapse;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.pricing-table th,
-.pricing-table td {
-  padding: 1rem 1.1rem;
-  border-bottom: 1px solid rgba(20, 33, 61, 0.1);
-  color: #243149;
-  text-align: left;
-}
-
-.pricing-table thead th {
-  background: rgba(20, 33, 61, 0.06);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 253, 247, 0.95)),
+    #fffdf7;
   color: #14213d;
-  font-size: 0.78rem;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(20, 33, 61, 0.08);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.pricing-plan-tab::before {
+  content: "";
+  position: absolute;
+  top: -0.42rem;
+  left: 1rem;
+  right: 1rem;
+  height: 0.72rem;
+  border-radius: 2px;
+  background: rgba(255, 252, 223, 0.66);
+}
+
+.pricing-plan-tab:hover,
+.pricing-plan-tab-active {
+  border-color: rgba(54, 95, 92, 0.34);
+  box-shadow: 0 14px 28px rgba(20, 33, 61, 0.11);
+  transform: translateY(-2px);
+}
+
+.pricing-plan-tab span {
+  font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-.pricing-table tbody th {
-  color: #14213d;
-  font-weight: 800;
-}
-
-.pricing-table tbody tr:last-child th,
-.pricing-table tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.pricing-table tbody tr:hover {
-  background: rgba(54, 95, 92, 0.06);
+.pricing-plan-tab strong {
+  color: #365f5c;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 950px) {
@@ -357,14 +666,40 @@
     padding-inline: 1rem;
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 460px;
-    margin-inline: auto;
+  .pricing-book-stage {
+    grid-template-columns: 2.8rem minmax(0, 1fr) 2.8rem;
+    gap: 0.6rem;
   }
 
-  .pricing-card {
+  .pricing-book-arrow {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .pricing-book {
+    grid-template-columns: 1fr;
     min-height: auto;
+  }
+
+  .pricing-book-page,
+  .pricing-book-page-left,
+  .pricing-book-page-right {
+    min-height: auto;
+    border: 1px solid rgba(20, 33, 61, 0.16);
+    transform: none;
+  }
+
+  .pricing-book-page-left {
+    border-radius: 8px 8px 2px 2px;
+    border-bottom: 0;
+  }
+
+  .pricing-book-page-right {
+    border-radius: 2px 2px 8px 8px;
+  }
+
+  .pricing-book-spine {
+    display: none;
   }
 }
 
@@ -374,14 +709,62 @@
   }
 
   .pricing-hero {
+    padding: 2.8rem 1.25rem 2rem;
     text-align: left;
+  }
+
+  .pricing-hero::before,
+  .pricing-hero::after {
+    display: none;
+  }
+
+  .pricing-hero-tape-left {
+    left: 1.25rem;
+  }
+
+  .pricing-hero-tape-right {
+    right: 1.25rem;
   }
 
   .pricing-hero-points {
     justify-content: flex-start;
   }
 
+  .pricing-book-stage {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pricing-book {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .pricing-book-arrow {
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .pricing-book-arrow-left {
+    grid-column: 1;
+  }
+
+  .pricing-book-arrow-right {
+    grid-column: 2;
+  }
+
+  .pricing-book-page {
+    padding: 2rem 1.25rem;
+  }
+
   .pricing-card-header {
     flex-direction: column;
+  }
+
+  .pricing-card-button {
+    width: 100%;
+  }
+
+  .pricing-plan-tabs {
+    grid-template-columns: 1fr;
   }
 }
